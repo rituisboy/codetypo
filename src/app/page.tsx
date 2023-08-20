@@ -23,19 +23,52 @@ function App() {
   console.log(lines)
   
   return (
+    <body>
 
-    <div>
-    <div className="parent-container">
-      <div className='centered-div'>
-        <pre >
+   <div className="container">
+    <header>
+      <div className="navcontainer">
+      <nav>
+        <ul id="NavList">
+          <li>
+            <p className="navlogo">CodeTypo</p>
+          </li>
+          <li>
+            <div id="itemflex">
+              <a href="#">Home</a>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+              <a href="#">Login</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    </header>
+   
+    <main>
+      <div className="content">
+        <div className="card">
+          <p>
             {lines.map((line, index) => (
               <div key={index}>{line}</div>
             ))}
-        </pre>
-      </div>
-    </div>
+          </p>
+        
 
-  </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div className="footer">
+    </div>
+    </footer>
+
+   </div>
+ 
+   </body>
+ 
   );
   
 }

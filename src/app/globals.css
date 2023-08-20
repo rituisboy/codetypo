@@ -2,26 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+.container{
+  height: 100%;
+  width: 100%;
+  overflow-x: none;
+  
+ 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+#NavList{
+  margin: 15px;
+  list-style-type: none ;
+  display: flex ;
+  justify-content: space-between;
+  align-items: center;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.navcontainer{
+  width: 100%;
+  background-color: grey;
+
+
+}
+
+.navlogo{
+  font-size: 2rem;
+  color: aliceblue;
+}
+ 
+#itemflex{
+  display: flex;
+  gap: 40px ;
+}
+
+.card{
+  width: 800px;
+  height: 400px;
+  background-color: grey;
+  border-radius: 20px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: [..];
+  
+}
+
+.card p{
+  padding: 5px;
+  margin-top: 10px;
+}
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
