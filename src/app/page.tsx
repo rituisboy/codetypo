@@ -1,3 +1,4 @@
+"use client"
 import axios from "axios";
 import logo from './logo.svg';
 import './App.css';
@@ -24,8 +25,8 @@ function App() {
   return (
 
     <div>
-    <div class="parent-container">
-      <div class='centered-div'>
+    <div className="parent-container">
+      <div className='centered-div'>
         <pre >
             {lines.map((line, index) => (
               <div key={index}>{line}</div>
