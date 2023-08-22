@@ -11,8 +11,10 @@ function App() {
   const [content,setUser] = useState('')
   const [language,setLanguage] = useState('Select language')
   const [audioPlayed, setAudioPlayed] = useState(false);
-  const randomNumber = Math.floor(Math.random()*3)
+
+  
   const musicArray = ['/doom.mp3','/pillarman.mp3',"/immigration.mp3"]
+  const randomNumber = Math.floor(Math.random()*(musicArray.length))
 
 
 
