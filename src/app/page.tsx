@@ -9,6 +9,7 @@ function App() {
   const username = 'rituisboy'
   const filename="index.html"
   const [content,setUser] = useState('')
+  const [language,setLanguage] = useState('Select Language')
 
   useEffect(()=>{
     axios.get(`https://api.github.com/repos/${username}/teamable/contents/${filename}`)
@@ -19,7 +20,6 @@ function App() {
     
   const decoded = Base64.decode(content);
   const lines = decoded.split('\n');
-  
   console.log(lines)
   
   return (
@@ -31,7 +31,8 @@ function App() {
       <nav>
         <ul id="NavList">
           <li>
-            <p className="navlogo">CodeTypo</p>
+            <span className="navlogo">Code</span>
+            <span className="typo">Typo</span>
           </li>
           <li>
             <div id="itemflex">
@@ -50,8 +51,9 @@ function App() {
       <div className="content">
 
         <div className="language">
-          <p>HTML</p>
+          <p>{language}</p>
         </div>
+        
 
         <div className="card">
             <pre>
@@ -60,10 +62,13 @@ function App() {
             ))}
             </pre>
         </div>
-        <div className="timer">
-          <button className="button">Select Language</button>
+         <div className="timer">
+          <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
+            <option value="Select Language" selected>--Language--</option>
+            <option value="JAVA">JAVA</option>
+            <option value="PYTHON">PYTHON</option>             
+          </select>
           <p>60s</p>
-          <button className="buttonstart">Start</button>
         </div>
       </div>
     </main>
