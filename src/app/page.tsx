@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios";
 import logo from './logo.svg';
-import './App.css';
+
 import { useEffect,useState } from 'react';
 import { Base64, decode } from 'js-base64';
 
@@ -49,26 +49,14 @@ function App() {
    
     <main>
       <div className="content">
-
-        <div className="language">
-          <p>{language}</p>
-        </div>
-        
-
         <div className="card">
-            <pre>
+          <p>
             {lines.map((line, index) => (
               <div key={index}>{line}</div>
             ))}
-            </pre>
-        </div>
-         <div className="timer">
-          <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
-            <option value="Select Language" selected>--Language--</option>
-            <option value="JAVA">JAVA</option>
-            <option value="PYTHON">PYTHON</option>             
-          </select>
-          <p>60s</p>
+          </p>
+        
+
         </div>
       </div>
     </main>
@@ -86,21 +74,4 @@ function App() {
   
 }
 
-export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default App;
