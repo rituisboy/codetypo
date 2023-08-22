@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios";
 import logo from './logo.svg';
-import './App.css';
+
 import { useEffect,useState } from 'react';
 import { Base64, decode } from 'js-base64';
 
@@ -55,9 +55,7 @@ function App() {
 
         <div className="card">
             <pre>
-            {lines.map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
+              {decoded}
             </pre>
         </div>
         <div className="timer">
