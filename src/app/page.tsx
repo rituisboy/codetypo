@@ -39,8 +39,7 @@ function App() {
   }, [audioPlayed]);
     
   const decoded = Base64.decode(content);
-  const lines = decoded.split('\n');
-  console.log(lines)
+  
   
   return (
     <body className="body">
@@ -77,9 +76,7 @@ function App() {
 
         <div className="card">
             <pre>
-            {lines.map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
+              {decoded}
             </pre>
         </div>
          <div className="timer">
