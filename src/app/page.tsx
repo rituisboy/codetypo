@@ -23,7 +23,7 @@ function App() {
   console.log(lines)
   
   return (
-    <body>
+    <body className="body">
 
    <div className="container">
     <header>
@@ -48,14 +48,22 @@ function App() {
    
     <main>
       <div className="content">
+
+        <div className="language">
+          <p>HTML</p>
+        </div>
+
         <div className="card">
-          <p>
+            <pre>
             {lines.map((line, index) => (
               <div key={index}>{line}</div>
             ))}
-          </p>
-        
-
+            </pre>
+        </div>
+        <div className="timer">
+          <button className="button">Select Language</button>
+          <p>60s</p>
+          <button className="buttonstart">Start</button>
         </div>
       </div>
     </main>

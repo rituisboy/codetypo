@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-
+*{
+  padding: 0;
+  margin: 0;
+}
 .container{
   height: 100%;
   width: 100%;
   overflow-x: none;
+  background-color: rgb(50, 52, 55);
+  position: absolute;
   
  
 }
@@ -22,7 +22,7 @@
 
 .navcontainer{
   width: 100%;
-  background-color: grey;
+  background-color: rgb(50, 52, 55);
 
 
 }
@@ -34,28 +34,71 @@
  
 #itemflex{
   display: flex;
-  gap: 40px ;
-}
-
-.card{
-  width: 800px;
-  height: 400px;
-  background-color: grey;
-  border-radius: 20px;
-  margin: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-overflow: [..];
+  gap: 40px;
   
 }
 
-.card p{
-  padding: 5px;
-  margin-top: 10px;
+#itemflex a{
+  color: aliceblue;
+  text-decoration: none;
+
 }
-.content{
+.language{
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 90px;
+  font-size: 30px;
+}
+
+.card{
+  width: auto;
+  height: auto;
+  background-color: rgb(50, 52, 55);
+  margin: 10px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+ 
+  
+  
+}
+
+.card pre{
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+.content{
+  color: white;
+  width: auto;
+}
+
+.timer{
+  color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 150px;
+  margin-top: 30px;
+  
+  
+}
+.timer p{
+  font-size: 30px;
+}
+.button{
+  
+  background-color: orange;
+  height: 30px;
+  width: 8rem;
+  border-radius: 10px;
+  
+}
+
+.buttonstart{
+  background-color: orange;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
 }
