@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios";
 import logo from './logo.svg';
-
+import './App.css';
 import { useEffect,useState } from 'react';
 import { Base64, decode } from 'js-base64';
 
@@ -9,7 +9,7 @@ function App() {
   const username = 'rituisboy'
   const filename="index.html"
   const [content,setUser] = useState('')
-  const [language,setLanguage] = useState('Select Language')
+  const [language,setLanguage] = useState('Select anguage')
 
   useEffect(()=>{
     axios.get(`https://api.github.com/repos/${username}/teamable/contents/${filename}`)
@@ -49,14 +49,26 @@ function App() {
    
     <main>
       <div className="content">
+
+        <div className="language">
+          <p>{language}</p>
+        </div>
+        
+
         <div className="card">
-          <p>
+            <pre>
             {lines.map((line, index) => (
               <div key={index}>{line}</div>
             ))}
-          </p>
-        
-
+            </pre>
+        </div>
+         <div className="timer">
+          <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
+            <option value="Select Language" selected>--Language--</option>
+            <option value="JAVA">JAVA</option>
+            <option value="PYTHON">PYTHON</option>             
+          </select>
+          <p>60s</p>
         </div>
       </div>
     </main>
@@ -74,4 +86,21 @@ function App() {
   
 }
 
-export default App;
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
