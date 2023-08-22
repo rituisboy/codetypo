@@ -9,7 +9,9 @@ function App() {
   const username = 'rituisboy'
   const filename="index.html"
   const [content,setUser] = useState('')
-  const [language,setLanguage] = useState('Select anguage')
+  const [language,setLanguage] = useState('Select language')
+  const [audioPlayed, setAudioPlayed] = useState(false);
+
 
   useEffect(()=>{
     axios.get(`https://api.github.com/repos/${username}/teamable/contents/${filename}`)
@@ -17,6 +19,24 @@ function App() {
           }) 
           
   },[])
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (!audioPlayed) {
+        const keyCode = event.keyCode || event.which;
+        if (keyCode) {
+          const audio = new Audio('/doom.mp3'); // Path to your audio file
+          audio.play();
+          setAudioPlayed(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [audioPlayed]);
     
   const decoded = Base64.decode(content);
   const lines = decoded.split('\n');
