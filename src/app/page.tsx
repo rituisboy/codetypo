@@ -9,14 +9,7 @@ function App() {
   const username = 'rituisboy'
   const filename="index.html"
   const [content,setUser] = useState('')
-  const [language,setLanguage] = useState('Select language')
-  const [audioPlayed, setAudioPlayed] = useState(false);
-
-  
-  const musicArray = ['/doom.mp3','/pillarman.mp3',"/immigration.mp3"]
-  const randomNumber = Math.floor(Math.random()*(musicArray.length))
-
-
+  const [language,setLanguage] = useState('Select anguage')
 
   useEffect(()=>{
     axios.get(`https://api.github.com/repos/${username}/teamable/contents/${filename}`)
@@ -24,27 +17,10 @@ function App() {
           }) 
           
   },[])
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (!audioPlayed) {
-        const keyCode = event.keyCode || event.which;
-        if (keyCode) {
-          const audio = new Audio(musicArray[randomNumber]); 
-          audio.play();
-          setAudioPlayed(true);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [audioPlayed]);
     
   const decoded = Base64.decode(content);
-  
+  const lines = decoded.split('\n');
+  console.log(lines)
   
   return (
     <body className="body">
@@ -81,12 +57,14 @@ function App() {
 
         <div className="card">
             <pre>
-              {decoded}
+            {lines.map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
             </pre>
         </div>
          <div className="timer">
           <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
-            <option value="Select Language" selected>--Language--</option>
+            <option value="Select Language">--Language--</option>
             <option value="JAVA">JAVA</option>
             <option value="PYTHON">PYTHON</option>             
           </select>
