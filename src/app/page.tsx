@@ -34,6 +34,15 @@ function App() {
           console.log(e);
         });
     }
+    if (language == 'JAVA') {
+      axios.get(`${randomPythonurl}`)
+        .then((res) => {
+          setUser(res.data.content);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   }, [language]);
   useEffect(() => {
     const handleKeyPress = (event) => {
