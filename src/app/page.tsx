@@ -4,28 +4,34 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect,useState } from 'react';
 import { Base64, decode } from 'js-base64';
+import { Montserrat } from "next/font/google";
 
+import python from './codeurl/python'
+const monserrat = Montserrat({subsets: ['cyrillic'] } )
+
+  
 function App() {
-  const username = 'rituisboy'
-  const filename="index.html"
   const [content,setUser] = useState('')
   const [language,setLanguage] = useState('Select language')
   const [audioPlayed, setAudioPlayed] = useState(false);
+  const repoLocation = python[2]
+   
+  const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
+  const randomNumber = Math.floor(Math.random()*(musicArray.length))
+  console.log(repoLocation);
 
   
-  const musicArray = ['/doom.mp3','/pillarman.mp3',"/immigration.mp3"]
-  const randomNumber = Math.floor(Math.random()*(musicArray.length))
-
-
 
   useEffect(()=>{
-    axios.get(`https://api.github.com/repos/${username}/teamable/contents/${filename}`)
+    axios.get(`${repoLocation}`)
           .then((res)=>{setUser(res.data.content)
           }) 
-          
+          .catch(e=>{
+            console.log(e);
+          })
   },[])
   useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
+    const handleKeyPress = (event) => {
       if (!audioPlayed) {
         const keyCode = event.keyCode || event.which;
         if (keyCode) {
@@ -46,9 +52,9 @@ function App() {
   const decoded = Base64.decode(content);
   
   
-  return (
-    <body className="body">
-
+    return (
+      
+  <body className="body">
    <div className="container">
     <header>
       <div className="navcontainer">
@@ -71,7 +77,7 @@ function App() {
     </div>
     </header>
    
-    <main>
+    <main className={monserrat.className}>
       <div className="content">
 
         <div className="language">
@@ -86,9 +92,9 @@ function App() {
         </div>
          <div className="timer">
           <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
-            <option value="Select Language" selected>--Language--</option>
-            <option value="JAVA">JAVA</option>
-            <option value="PYTHON">PYTHON</option>             
+            <option id= "languageSelector" value="Select Language" selected>--Language--</option>
+            <option id= "languageSelector" value="JAVA">JAVA</option>
+            <option id= "languageSelector" value="PYTHON">PYTHON</option>             
           </select>
           <p>60s</p>
         </div>
@@ -103,6 +109,7 @@ function App() {
    </div>
  
    </body>
+   
  
   );
   
