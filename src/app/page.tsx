@@ -8,16 +8,16 @@ import { Montserrat } from "next/font/google";
 
 import python from './codeurl/python'
 import Java from './codeurl/Java'
-
-const randomCodeurl = (languageUrlDictionary)=>{
+type LanguageUrlDictionary = {
+  [language: string]: string;
+};
+const randomCodeurl = (languageUrlDictionary:LanguageUrlDictionary)=>{
+  
   const keys = Object.keys(languageUrlDictionary);
   const randomIndex = Math.floor(Math.random()*keys.length)
 
 
     return languageUrlDictionary[keys[randomIndex]]
-    // return Java[keys[randomIndex]]
- 
-
 }
 
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
