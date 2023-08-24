@@ -23,15 +23,18 @@ function App() {
   console.log(randomPythonurl);
 
   
-
-  useEffect(()=>{
-    axios.get(`${randomPythonurl}`)
-          .then((res)=>{setUser(res.data.content)
-          }) 
-          .catch(e=>{
-            console.log(e);
-          })
-  },[])
+  
+  useEffect(() => {
+    if (language == 'PYTHON') {
+      axios.get(`${randomPythonurl}`)
+        .then((res) => {
+          setUser(res.data.content);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  }, [language]);
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (!audioPlayed) {
@@ -93,7 +96,7 @@ function App() {
             </pre>
         </div>
          <div className="timer">
-          <select name="Language" id="select" onChange={(e) => setLanguage(e.target.value)}>
+          <select name="Language" id="select" onChange={(e) => {setLanguage(e.target.value)}}>
             <option id= "languageSelector" value="Select Language" selected>--Language--</option>
             <option id= "languageSelector" value="JAVA">JAVA</option>
             <option id= "languageSelector" value="PYTHON">PYTHON</option>             
