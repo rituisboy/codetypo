@@ -57,7 +57,7 @@ function App() {
     
   }, [language]);
   useEffect(() => {
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event:KeyboardEvent) => {
       if (!audioPlayed) {
         const keyCode = event.keyCode || event.which;
         if (keyCode) {
