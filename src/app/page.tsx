@@ -7,6 +7,8 @@ import { Base64, decode } from 'js-base64';
 import { Montserrat } from "next/font/google";
 
 import python from './codeurl/python'
+import randomPythonurl from './showCode/showpython'
+
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
 
   
@@ -14,16 +16,16 @@ function App() {
   const [content,setUser] = useState('')
   const [language,setLanguage] = useState('Select language')
   const [audioPlayed, setAudioPlayed] = useState(false);
-  const repoLocation = python[2]
+  
    
   const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
   const randomNumber = Math.floor(Math.random()*(musicArray.length))
-  console.log(repoLocation);
+  console.log(randomPythonurl);
 
   
 
   useEffect(()=>{
-    axios.get(`${repoLocation}`)
+    axios.get(`${randomPythonurl}`)
           .then((res)=>{setUser(res.data.content)
           }) 
           .catch(e=>{
