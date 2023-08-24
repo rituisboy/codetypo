@@ -7,7 +7,12 @@ import { Base64, decode } from 'js-base64';
 import { Montserrat } from "next/font/google";
 
 import python from './codeurl/python'
-import randomPythonurl from './showCode/showpython'
+
+const randomCodeurl = (languageUrlDictionary)=>{
+  const keys = Object.keys(languageUrlDictionary);
+  const randonIndex = Math.floor(Math.random()*keys.length)
+  return python[keys[randonIndex]]
+}
 
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
 
@@ -20,13 +25,11 @@ function App() {
    
   const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
   const randomNumber = Math.floor(Math.random()*(musicArray.length))
-  console.log(randomPythonurl);
-
   
   
   useEffect(() => {
     if (language == 'PYTHON') {
-      axios.get(`${randomPythonurl}`)
+      axios.get(randomCodeurl(python))
         .then((res) => {
           setUser(res.data.content);
         })
@@ -35,7 +38,7 @@ function App() {
         });
     }
     if (language == 'JAVA') {
-      axios.get(`${randomPythonurl}`)
+      axios.get(randomCodeurl(python))
         .then((res) => {
           setUser(res.data.content);
         })
@@ -43,6 +46,8 @@ function App() {
           console.log(e);
         });
     }
+    console.log(randomCodeurl(python));
+    
   }, [language]);
   useEffect(() => {
     const handleKeyPress = (event) => {
