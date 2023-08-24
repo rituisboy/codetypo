@@ -7,11 +7,17 @@ import { Base64, decode } from 'js-base64';
 import { Montserrat } from "next/font/google";
 
 import python from './codeurl/python'
+import Java from './codeurl/Java'
 
 const randomCodeurl = (languageUrlDictionary)=>{
   const keys = Object.keys(languageUrlDictionary);
-  const randonIndex = Math.floor(Math.random()*keys.length)
-  return python[keys[randonIndex]]
+  const randomIndex = Math.floor(Math.random()*keys.length)
+
+
+    return languageUrlDictionary[keys[randomIndex]]
+    // return Java[keys[randomIndex]]
+ 
+
 }
 
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
@@ -38,7 +44,7 @@ function App() {
         });
     }
     if (language == 'JAVA') {
-      axios.get(randomCodeurl(python))
+      axios.get(randomCodeurl(Java))
         .then((res) => {
           setUser(res.data.content);
         })
@@ -46,7 +52,8 @@ function App() {
           console.log(e);
         });
     }
-    console.log(randomCodeurl(python));
+    // console.log(randomCodeurl(python));
+    // console.log(randomCodeurl(Java));
     
   }, [language]);
   useEffect(() => {
