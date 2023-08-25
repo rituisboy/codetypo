@@ -1,37 +1,38 @@
 "use client"
 import axios from "axios";
-import logo from './logo.svg';
 import './App.css';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useRef } from 'react';
 import { Base64, decode } from 'js-base64';
 import { Montserrat } from "next/font/google";
-
 import python from './codeurl/python'
 import Java from './codeurl/Java'
+
+const monserrat = Montserrat({subsets: ['cyrillic'] } )
+
+
 type LanguageUrlDictionary = {
   [language: string]: string;
 };
+
 const randomCodeurl = (languageUrlDictionary:LanguageUrlDictionary)=>{
   
   const keys = Object.keys(languageUrlDictionary);
   const randomIndex = Math.floor(Math.random()*keys.length)
-
-
-    return languageUrlDictionary[keys[randomIndex]]
+  return languageUrlDictionary[keys[randomIndex]]
 }
 
-const monserrat = Montserrat({subsets: ['cyrillic'] } )
 
   
 function App() {
   const [content,setUser] = useState('')
   const [language,setLanguage] = useState('Select language')
-  const [audioPlayed, setAudioPlayed] = useState(false);
-  
+  // const [audioPlayed, setAudioPlayed] = useState(false);
+  const [UserInput, setUserInput] = useState('')  
    
-  const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
-  const randomNumber = Math.floor(Math.random()*(musicArray.length))
-  
+  // const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
+  // const randomNumber = Math.floor(Math.random()*(musicArray.length))
+  // const audio = new Audio(musicArray[randomNumber]); 
+
   
   useEffect(() => {
     if (language == 'PYTHON') {
@@ -51,31 +52,12 @@ function App() {
         .catch(e => {
           console.log(e);
         });
-    }
-    // console.log(randomCodeurl(python));
-    // console.log(randomCodeurl(Java));
-    
+    }    
   }, [language]);
-  useEffect(() => {
-    const handleKeyPress = (event:KeyboardEvent) => {
-      if (!audioPlayed) {
-        const keyCode = event.keyCode || event.which;
-        if (keyCode) {
-          const audio = new Audio(musicArray[randomNumber]); 
-          audio.play();
-          setAudioPlayed(true);
-        }
-      }
-    };
 
-    window.addEventListener('keydown', handleKeyPress);
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [audioPlayed]);
     
-  const decoded = Base64.decode(content);
+  const TextDisplay = Base64.decode(content);
   
   
     return (
@@ -113,8 +95,15 @@ function App() {
 
         <div className="card">
             <pre>
-              {decoded}
+              {TextDisplay}
+              {UserInput}
             </pre>
+        </div>
+        <div>
+          <input  className="inputField"  
+                  type="text" value={UserInput} 
+                  onChange={(e)=>setUserInput(e.target.value)}
+          />
         </div>
          <div className="timer">
           <select name="Language" id="select" onChange={(e) => {setLanguage(e.target.value)}}>
@@ -123,6 +112,7 @@ function App() {
             <option id= "languageSelector" value="PYTHON">PYTHON</option>             
           </select>
           <p>60s</p>
+          
         </div>
       </div>
     </main>
