@@ -28,11 +28,14 @@ function App() {
   const [language,setLanguage] = useState('Select language')
   // const [audioPlayed, setAudioPlayed] = useState(false);
   const [UserInput, setUserInput] = useState('')  
+  const inputRef = useRef(null)
    
   // const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
   // const randomNumber = Math.floor(Math.random()*(musicArray.length))
   // const audio = new Audio(musicArray[randomNumber]); 
-
+  const onInputclick = ()=>{
+      inputRef.current.focus()
+  }
   
   useEffect(() => {
     if (language == 'PYTHON') {
@@ -60,7 +63,7 @@ function App() {
   const TextDisplay = Base64.decode(content);
   
   
-    return (
+  return (
       
   <body className="body">
    <div className="container">
@@ -93,7 +96,7 @@ function App() {
         </div>
         
 
-        <div className="card">
+        <div className="card" onClick={onInputclick}>
             <pre>
               {TextDisplay}
               {UserInput}
@@ -103,6 +106,7 @@ function App() {
           <input  className="inputField"  
                   type="text" value={UserInput} 
                   onChange={(e)=>setUserInput(e.target.value)}
+                  ref={inputRef}
           />
         </div>
          <div className="timer">
