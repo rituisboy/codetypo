@@ -34,9 +34,8 @@ function App() {
   // const randomNumber = Math.floor(Math.random()*(musicArray.length))
   // const audio = new Audio(musicArray[randomNumber]); 
   const onInputclick = ()=>{
-      inputRef.current.focus()
+      inputRef.current.focus()     
   }
-  
   useEffect(() => {
     if (language == 'PYTHON') {
       axios.get(randomCodeurl(python))
@@ -57,10 +56,12 @@ function App() {
         });
     }    
   }, [language]);
-
+  window.addEventListener('keydown',onInputclick)
 
     
   const TextDisplay = Base64.decode(content);
+  console.log(TextDisplay);
+  
   
   
   return (
