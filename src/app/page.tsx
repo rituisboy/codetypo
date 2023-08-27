@@ -40,7 +40,7 @@ function App() {
     let interval
     if (startTimer){
        interval = setInterval(() => {
-      setCount((prevTime) => prevTime - 1);
+      setCount((prevTime) => (prevTime>0? prevTime -1 : prevTime));
     }, 1000);
   }
 
