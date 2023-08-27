@@ -29,13 +29,13 @@ function App() {
   const [language,setLanguage] = useState('Select language')
   const [userInput, setUserInput] = useState('')  
   const [isHidden,setIsHidden] = useState(false)
-  const inputRef = useRef()
+  
   const [count, setCount] = useState(60)
   const [startTimer, setStartTimer] = useState(false)   
   const [greenCharacterCount, setGreenCharacterCount] = useState(0);
   const [wpm, setWPM] = useState(0); 
-
-  const onInputclick = ()=>{
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onInputclick = ())=>{
     if (inputRef.current){
       inputRef.current.focus()
     }
