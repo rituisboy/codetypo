@@ -126,6 +126,23 @@
   color: white;
 }
 
-/* .inputField{
+.inputField{
+  opacity: 0;
+}
+
+.correct{
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+}
+.incorrect{
+  background-color: red;
+  color: white;
+  
+}
+.active{
+  text-decoration: underline;
+}
+.hidden {
   display: none;
-} */
+}

@@ -26,25 +26,33 @@ const randomCodeurl = (languageUrlDictionary:LanguageUrlDictionary)=>{
 function App() {
   const [content,setUser] = useState('')
   const [language,setLanguage] = useState('Select language')
-  // const [audioPlayed, setAudioPlayed] = useState(false);
-  const [UserInput, setUserInput] = useState('')  
-  const inputRef = useRef(null)
-   
-  // const musicArray = ['/music/doom.mp3','/music/pillarman.mp3',"/music/immigration.mp3"]
-  // const randomNumber = Math.floor(Math.random()*(musicArray.length))
-  // const audio = new Audio(musicArray[randomNumber]); 
+  const [userInput, setUserInput] = useState('')  
+  const [isHidden,setIsHidden] = useState(false)
+  const inputRef = useRef()
+  const [count, setCount] = useState(60)
+  const [startTimer, setStartTimer] = useState(false)   
+
   const onInputclick = ()=>{
-      inputRef.current.focus()     
+      inputRef.current.focus()
+      setIsHidden(!isHidden)
   }
   useEffect(() => {
+    let interval
+    if (startTimer){
+       interval = setInterval(() => {
+      setCount((prevTime) => prevTime - 1);
+    }, 1000);
+  }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [startTimer]);
+
+
+  useEffect(() => {
     if (language == 'PYTHON') {
-      axios.get(randomCodeurl(python))
-        .then((res) => {
-          setUser(res.data.content);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      setUser(python[1])
     }
     if (language == 'JAVA') {
       axios.get(randomCodeurl(Java))
@@ -56,13 +64,22 @@ function App() {
         });
     }    
   }, [language]);
-  window.addEventListener('keydown',onInputclick)
+  useEffect(() => {
+    window.addEventListener('keydown', onInputclick);
+    document.addEventListener('keydown', () => setStartTimer(!startTimer));
+
+    return () => {
+      window.removeEventListener('keydown', onInputclick);
+      
+      document.addEventListener('keydown', () => setStartTimer(!startTimer));
+
+    };
+  }, []);
 
     
-  const TextDisplay = Base64.decode(content);
-  console.log(TextDisplay);
-  
-  
+  const TextDisplay = content
+  const character = TextDisplay.split('')
+
   
   return (
       
@@ -97,26 +114,44 @@ function App() {
         </div>
         
 
-        <div className="card" onClick={onInputclick}>
+        <div className="card" onKeyDown={onInputclick}>
             <pre>
-              {TextDisplay}
-              {UserInput}
+            <div className="quote-display" >
+              {character.map((character, index) => (
+                  <span
+                    key={index}
+                    className={
+                      userInput[index] === undefined
+                        ? 'active'
+                        : userInput[index] === character
+                        ? 'correct'
+                        : 'incorrect'
+                    }
+                  >
+                    {character}
+                  </span>
+               ))}
+            </div>
             </pre>
         </div>
         <div>
           <input  className="inputField"  
-                  type="text" value={UserInput} 
+                  type="text" value={userInput} 
                   onChange={(e)=>setUserInput(e.target.value)}
                   ref={inputRef}
           />
         </div>
          <div className="timer">
-          <select name="Language" id="select" onChange={(e) => {setLanguage(e.target.value)}}>
+          <select name="Language" onKeyDown={onInputclick} 
+                                  className={(isHidden)?'hidden':''} 
+                                  id="select" onChange={(e) => {setLanguage(e.target.value)}}
+          >
             <option id= "languageSelector" value="Select Language" selected>--Language--</option>
             <option id= "languageSelector" value="JAVA">JAVA</option>
             <option id= "languageSelector" value="PYTHON">PYTHON</option>             
           </select>
-          <p>60s</p>
+
+          <p>{count}</p>
           
         </div>
       </div>
