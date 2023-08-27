@@ -139,6 +139,7 @@ function App() {
                   type="text" value={userInput} 
                   onChange={(e)=>setUserInput(e.target.value)}
                   ref={inputRef}
+                  disabled={count <= 0}
           />
         </div>
          <div className="timer">
