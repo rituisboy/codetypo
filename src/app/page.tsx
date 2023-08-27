@@ -36,7 +36,10 @@ function App() {
   const [wpm, setWPM] = useState(0); 
 
   const onInputclick = ()=>{
+    if (inputRef.current){
       inputRef.current.focus()
+    }
+      
       setIsHidden(!isHidden)
   }
   // useEffect(() => {
@@ -52,7 +55,7 @@ function App() {
   //   };
   // }, [startTimer]);
   useEffect(() => {
-    let interval;
+    let interval: any;
   
     if (startTimer) {
       interval = setInterval(() => {
