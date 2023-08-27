@@ -35,7 +35,7 @@ function App() {
   const [greenCharacterCount, setGreenCharacterCount] = useState(0);
   const [wpm, setWPM] = useState(0); 
   const inputRef = useRef<HTMLInputElement>(null);
-  const onInputclick = ())=>{
+  const onInputclick = ()=>{
     if (inputRef.current){
       inputRef.current.focus()
     }
