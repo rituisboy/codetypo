@@ -6,6 +6,7 @@ import { Base64, decode } from 'js-base64';
 import { Montserrat } from "next/font/google";
 import python from './codeurl/python'
 import Java from './codeurl/Java'
+import { count } from "console";
 
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
 
@@ -31,23 +32,46 @@ function App() {
   const inputRef = useRef()
   const [count, setCount] = useState(60)
   const [startTimer, setStartTimer] = useState(false)   
+  const [greenCharacterCount, setGreenCharacterCount] = useState(0);
+  const [wpm, setWPM] = useState(0); 
 
   const onInputclick = ()=>{
       inputRef.current.focus()
       setIsHidden(!isHidden)
   }
-  useEffect(() => {
-    let interval
-    if (startTimer){
-       interval = setInterval(() => {
-      setCount((prevTime) => (prevTime>0? prevTime -1 : prevTime));
-    }, 1000);
-  }
+  // useEffect(() => {
+  //   let interval
+  //   if (startTimer){
+  //      interval = setInterval(() => {
+  //     setCount((prevTime) => (prevTime>0? prevTime -1 : prevTime));
+  //   }, 1000);
+  // }
 
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [startTimer]);
+  useEffect(() => {
+    let interval;
+  
+    if (startTimer) {
+      interval = setInterval(() => {
+        setCount((prevTime) => (prevTime > 0 ? prevTime - 1 : prevTime));
+      }, 1000);
+    }
+    const greenCount = Array.from(
+      document.querySelectorAll('.correct')
+    ).filter((element) => element.classList.contains('green')).length;
+    setGreenCharacterCount(greenCount);
+
+    const calculatedWPM = Math.round(greenCount / 5);
+    setWPM(calculatedWPM);
+  
     return () => {
       clearInterval(interval);
     };
-  }, [startTimer]);
+  }, [startTimer,count]);
+  
 
 
   useEffect(() => {
@@ -64,6 +88,16 @@ function App() {
         });
     }    
   }, [language]);
+
+  useEffect(() => {
+    const greenCount = Array.from(
+      document.querySelectorAll('.correct')
+    ).filter((element) => element.classList.contains('green')).length;
+  
+    setGreenCharacterCount(greenCount);
+  }, [userInput]);
+  
+
   useEffect(() => {
     window.addEventListener('keydown', onInputclick);
     document.addEventListener('keydown', () => setStartTimer(!startTimer));
@@ -124,7 +158,7 @@ function App() {
                       userInput[index] === undefined
                         ? 'active'
                         : userInput[index] === character
-                        ? 'correct'
+                        ? 'correct green'
                         : 'incorrect'
                     }
                   >
@@ -153,6 +187,8 @@ function App() {
           </select>
 
           <p>{count}</p>
+          <p>Green Characters: {greenCharacterCount}</p> 
+          {count === 0 && <p>WPM: {wpm}</p>}
           
         </div>
       </div>
