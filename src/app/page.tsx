@@ -132,10 +132,11 @@ function App() {
           </li>
           <li>
             <div id="itemflex">
-              <a href="#">Home</a>
-              <a href="#">About</a>
-              <a href="#">Contact</a>
-              <a href="#">Login</a>
+              <span>
+              <i class="fa-regular fa-user"></i>
+              <a href="#">Sign In</a>
+              </span>
+              <a href="#">Register</a>
             </div>
           </li>
         </ul>
@@ -189,9 +190,9 @@ function App() {
             <option id= "languageSelector" value="PYTHON">PYTHON</option>             
           </select>
 
-          <p>{count}</p>
-          <p>Green Characters: {greenCharacterCount}</p> 
-          {count === 0 && <p>WPM: {wpm}</p>}
+          <span>{count}</span>
+          <span>Green Characters: {greenCharacterCount}</span> 
+          {count === 0 && <span>WPM: {wpm}</span>}
           
         </div>
       </div>

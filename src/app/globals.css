@@ -51,15 +51,19 @@
  
 #itemflex{
   display: flex;
-  gap: 40px;
-  
+  gap: 20px;
+  color: orange;
+
 }
 
 #itemflex a{
-  color: aliceblue;
   text-decoration: none;
   color: orange;
 
+}
+
+#itemflex :hover{
+  color: #ff8c00;
 }
 .language{
   display: flex;
@@ -72,7 +76,6 @@
 }
 
 .card{
-  width: 1180px;
   height: 450px;
   background-color: rgb(50, 52, 55);
   margin: 8px;
@@ -92,6 +95,13 @@
   padding: 5px;
   margin-top: 7px;
   font-size: 1.2rem;
+  text-decoration: none;
+}
+
+
+.quote-display{
+  font-size: auto;
+  text-decoration: none;
 }
 .content{
   color: gray;
@@ -103,14 +113,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20rem;
-  margin-top: 3rem;
+  margin: 20vh;
+  margin-top: 1px;
   
   
 }
-.timer p{
+/* .timer p{
   font-size: 30px;
-}
+} */
 #select{
   
   background-color: orange;
@@ -145,4 +155,24 @@
 }
 .hidden {
   display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .container{
+    height: 915px;
+    width: 412px;
+    overflow-wrap: break-word;
+  }
+
+.card{
+  overflow: hidden;
+  
+}
+.timer{
+  margin: 8px;
+  padding: 5px;
+}
+
 }
