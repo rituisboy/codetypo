@@ -7,6 +7,7 @@ import { Montserrat } from "next/font/google";
 import python from './codeurl/python'
 import Java from './codeurl/Java'
 import { count } from "console";
+import React from 'react';
 
 const monserrat = Montserrat({subsets: ['cyrillic'] } )
 
@@ -30,7 +31,7 @@ function App() {
   const [userInput, setUserInput] = useState('')  
   const [isHidden,setIsHidden] = useState(false)
   
-  const [count, setCount] = useState(60)
+  const [count, setCount] = useState(30)
   const [startTimer, setStartTimer] = useState(false)   
   const [greenCharacterCount, setGreenCharacterCount] = useState(0);
   const [wpm, setWPM] = useState(0); 
@@ -112,10 +113,13 @@ function App() {
 
     };
   }, []);
+  
 
     
   const TextDisplay = content
   const character = TextDisplay.split('')
+
+  
 
   
   return (
@@ -147,10 +151,19 @@ function App() {
     <main className={monserrat.className}>
       <div className="content">
 
-        <div className="language">
+        {/* <div className="language">
           <p>{language}</p>
-        </div>
-        
+        </div> */}
+          <div className="ls">
+          <select name="Language" onKeyDown={onInputclick} 
+                                  className={(isHidden)?'hidden':''} 
+                                  id="select" onChange={(e) => {setLanguage(e.target.value)}}
+           >
+            <option  id= "languageSelector" value="Select Language " selected>--Language--</option>
+            <option id= "languageSelector" value="JAVA">JAVA</option>
+            <option id= "languageSelector" value="PYTHON">PYTHON</option>             
+          </select>
+          </div>
 
         <div className="card" onKeyDown={onInputclick}>
             <pre>
@@ -181,14 +194,14 @@ function App() {
           />
         </div>
          <div className="timer">
-          <select name="Language" onKeyDown={onInputclick} 
+          {/* <select name="Language" onKeyDown={onInputclick} 
                                   className={(isHidden)?'hidden':''} 
                                   id="select" onChange={(e) => {setLanguage(e.target.value)}}
           >
             <option id= "languageSelector" value="Select Language" selected>--Language--</option>
             <option id= "languageSelector" value="JAVA">JAVA</option>
             <option id= "languageSelector" value="PYTHON">PYTHON</option>             
-          </select>
+          </select> */}
 
           <span>{count}</span>
           <span>Green Characters: {greenCharacterCount}</span> 

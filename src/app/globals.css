@@ -1,37 +1,46 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500&display=swap');
 
-
 *{
+
   padding: 0;
   margin: 0;
+
 }
+
 .container{
+
   height: 100%;
   width: 100%;
   overflow-x: none;
   background-color: rgb(50, 52, 55);
   position: absolute;
   
- 
 }
 
+
+/* -----------------NavBar----------------- */
+
+
 #NavList{
+
   margin: 15px;
   list-style-type: none ;
   display: flex ;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .navcontainer{
+
   width: 100%;
   background-color: rgb(50, 52, 55);
-
 
 }
 
 .navlogo{
+
   font-size: 2rem;
   color: aliceblue;
   font-style: arial;
@@ -40,6 +49,7 @@
 }
 
 .typo{
+
   background-color: rgb(227, 150, 61);
   border-radius: 3px;
   font-size: 2rem;
@@ -47,9 +57,11 @@
   font-style: arial;
   font-weight: bold;
   padding: 2px;
+
 }
  
 #itemflex{
+
   display: flex;
   gap: 20px;
   color: orange;
@@ -57,15 +69,21 @@
 }
 
 #itemflex a{
+
   text-decoration: none;
   color: orange;
 
 }
 
 #itemflex :hover{
+
   color: #ff8c00;
+
 }
+
+/* 
 .language{
+
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
@@ -73,9 +91,15 @@
   font-size: 30px;
   color: orange;
   font-family: 'ADLaM Display', cursive;
-}
+
+} */
+
+
+/* -----------------Code Display----------------- */
+
 
 .card{
+
   height: 450px;
   background-color: rgb(50, 52, 55);
   margin: 8px;
@@ -88,27 +112,39 @@
 }
 
 .card::-webkit-scrollbar{
+
   display: none;
+
 }
 
 .card pre{
+
   padding: 5px;
   margin-top: 7px;
   font-size: 1.2rem;
   text-decoration: none;
-}
 
+}
 
 .quote-display{
-  font-size: auto;
+  
   text-decoration: none;
-}
-.content{
-  color: gray;
-  width: auto;
+
 }
 
+.content{
+
+  color: gray;
+  width: auto;
+
+}
+
+
+/* -----------------(Selecter, Timer, WPM)----------------- */
+
+
 .timer{
+
   color: orange;
   display: flex;
   align-items: center;
@@ -116,63 +152,99 @@
   margin: 20vh;
   margin-top: 1px;
   
-  
-}
-/* .timer p{
-  font-size: 30px;
-} */
-#select{
-  
-  background-color: orange;
-  height: 30px;
-  width: 6.8rem;
-  border-radius: 10px;
-  padding: 5px;
-  
-}
-#languageSelector{
-  font-family: 'Rubik', sans-serif;
-  src :url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,300&display=swap');
-  color: white;
 }
 
+#select{
+  
+  background-color: rgb(50, 52, 55);
+  color: orange;
+  height: 30px;
+  padding: 5px;
+  border: none;
+  font-size: 15px;
+  
+  
+}
+
+#languageSelector{
+
+   /* font-family: 'Rubik', sans-serif;
+  src :url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,300&display=swap');
+  color: white; */
+
+} 
+
+
+.ls{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 70px;
+  font-size: 30px;
+  
+}
+
+
+/* -----------------Input----------------- */
+
+
 .inputField{
+
+
   opacity: 0;
+
 }
 
 .correct{
+
   background-color: green;
   color: white;
   border-radius: 5px;
+
 }
 .incorrect{
+
   background-color: red;
   color: white;
   
 }
+
 .active{
+
   text-decoration: underline;
+
 }
+
 .hidden {
+
   display: none;
+
 }
+
+/* -----------------Responsive----------------- */
 
 
 @media screen and (max-width: 600px) {
 
   .container{
+
     height: 915px;
     width: 412px;
     overflow-wrap: break-word;
+
   }
 
 .card{
+
   overflow: hidden;
   
 }
+
 .timer{
+
   margin: 8px;
   padding: 5px;
+
 }
 
 }
