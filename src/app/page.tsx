@@ -137,7 +137,7 @@ function App() {
           <li>
             <div id="itemflex">
               <span>
-              <i class="fa-regular fa-user"></i>
+              <i className="fa-regular fa-user"></i>
               <a href="#">Sign In</a>
               </span>
               <a href="#">Register</a>
@@ -200,7 +200,7 @@ function App() {
           >
             <option id= "languageSelector" value="Select Language" selected>--Language--</option>
             <option id= "languageSelector" value="JAVA">JAVA</option>
-            <option id= "languageSelector" value="PYTHON">PYTHON</option>             
+            <option id= "languageSelector" value=" PYTHON">PYTHON</option>             
           </select> */}
 
           <span>{count}</span>
