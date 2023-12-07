@@ -83,13 +83,14 @@ function App() {
       setUser(python[1])
     }
     if (language == 'JAVA') {
-      axios.get(randomCodeurl(Java))
-        .then((res) => {
-          setUser(res.data.content);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      // axios.get(randomCodeurl(Java))
+      //   .then((res) => {
+      //     setUser(res.data.content);
+      //   })
+      //   .catch(e => {
+      //     console.log(e);
+      //   });
+      setUser(Java[1])
     }    
   }, [language]);
 
